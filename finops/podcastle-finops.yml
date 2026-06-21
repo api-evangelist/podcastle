@@ -1,0 +1,103 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Podcastle
+providerId: podcastle
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- AI
+- Audio
+- Text to Speech
+- Voice Cloning
+- Podcasting
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Podcastle spend across two billing surfaces. The consumer
+  creation platform (Async) bills monthly subscriptions with AI-credit
+  allowances consumed by generative actions and transcription-hour caps. The
+  Async Voice API bills usage-based per hour of synthesized audio, with Async
+  Flash and Async Pro tiers and voice cloning included. Per-hour and per-credit
+  rates are subject to change; verify against the pricing pages during
+  reconciliation.
+notes: >-
+  Rates and credit allowances are subject to change; verify against
+  async.com/pricing and the Async developer pages during reconciliation.
+sources:
+- https://async.com/pricing
+- https://async.com/async-voice-api
+- https://docs.async.com
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Podcastle
+serviceCategory: AI and Machine Learning
+billingModel:
+  pricingCategory: Usage-Based
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+  - Usage
+  - Purchase
+  - Adjustment
+focusColumns:
+  ServiceName: Async Voice API
+  ServiceCategory: AI and Machine Learning
+  ProviderName: Podcastle
+  PublisherName: Podcastle
+  InvoiceIssuerName: Podcastle
+  BillingCurrency: USD
+  ChargeCategory: Usage
+  PricingCategory: Usage-Based
+meters:
+- name: tts_audio_hours
+  description: Hours of audio synthesized through the Async Voice API, billed per hour by model tier (Flash from $0.50/hr, Pro from $1.00/hr).
+  unit: hours
+  aggregation: sum
+  dimensions:
+  - account
+  - model
+- name: voice_clones
+  description: Custom voices created via /voices/clone; included with Voice API tiers.
+  unit: clones
+  aggregation: sum
+  dimensions:
+  - account
+- name: ai_credits
+  description: Generative AI credits consumed by platform actions (TTS, dubbing, avatars, music, etc.), allocated monthly per subscription tier.
+  unit: credits
+  aggregation: sum
+  dimensions:
+  - account
+  - feature
+- name: transcription_hours
+  description: Hours of audio transcribed on the consumer platform, capped per subscription tier.
+  unit: hours
+  aggregation: sum
+  dimensions:
+  - account
+- name: storage_gb
+  description: Storage consumed by recordings and projects per subscription tier.
+  unit: gigabytes
+  aggregation: max
+  dimensions:
+  - account
+principles:
+- name: Visibility
+  description: Track Voice API per-hour synthesis spend and platform AI-credit burn; review credit usage before monthly reset.
+- name: Allocation
+  description: Tag API keys per workload or team and map consumer-platform seats and credits to internal cost centers.
+- name: Optimization
+  description: Use Async Flash for cost-sensitive synthesis and reserve Async Pro for premium English quality; stay within monthly credit allowances to avoid overage purchases.
+- name: Accountability
+  description: Assign owners per project or key; review per-hour synthesis spend and credit consumption monthly against budget.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

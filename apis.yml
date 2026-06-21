@@ -1,0 +1,109 @@
+aid: podcastle
+url: https://raw.githubusercontent.com/api-evangelist/podcastle/refs/heads/main/apis.yml
+name: Podcastle
+kind: company
+description: Podcastle is an AI audio and podcast creation platform whose developer
+  engine, Async, exposes a low-latency Voice API for human-like text-to-speech, a
+  browsable voice library, and instant voice cloning from a short audio sample. The
+  API is served from https://api.async.com and authenticated with an x-api-key
+  header plus a version header. Transcription is a Podcastle platform feature; no
+  standalone transcription endpoint is documented in the public Voice API.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- AI
+- Audio
+- Text to Speech
+- Voice Cloning
+- Podcasting
+created: '2026-06-21'
+modified: '2026-06-21'
+specificationVersion: '0.19'
+apis:
+- aid: podcastle:text-to-speech
+  name: Podcastle Text-to-Speech API
+  tags:
+  - Text to Speech
+  - Audio
+  - Streaming
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.async.com/welcome-to-async-voice-api-990330m0
+  baseURL: https://api.async.com
+  properties:
+  - url: https://docs.async.com/text-to-speech-18760785e0
+    type: Documentation
+  - url: https://docs.async.com/welcome-to-async-voice-api-990330m0
+    type: APIReference
+  - url: openapi/podcastle-openapi.yml
+    type: OpenAPI
+  description: Low-latency, human-like speech synthesis via the Async engine. Batch
+    (/text_to_speech), streaming (/text_to_speech/streaming), word-timestamped
+    (/text_to_speech/with_timestamps), and WebSocket
+    (/text_to_speech/websocket/ws) generation across async_pro_v1.0 and
+    async_flash models.
+- aid: podcastle:voices
+  name: Podcastle Voices API
+  tags:
+  - Voices
+  - Voice Library
+  - Catalog
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.async.com/list-voices-16699698e0
+  baseURL: https://api.async.com
+  properties:
+  - url: https://docs.async.com/list-voices-16699698e0
+    type: Documentation
+  - url: openapi/podcastle-openapi.yml
+    type: OpenAPI
+  description: Browse the voice library of predefined and custom voices via POST
+    /voices, with filters for model, language, accent, gender, and style plus
+    cursor-based pagination.
+- aid: podcastle:voice-cloning
+  name: Podcastle Voice Cloning API
+  tags:
+  - Voice Cloning
+  - Custom Voices
+  - Revoice
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.async.com/clone-voice-16699697e0
+  baseURL: https://api.async.com
+  properties:
+  - url: https://docs.async.com/clone-voice-16699697e0
+    type: Documentation
+  - url: openapi/podcastle-openapi.yml
+    type: OpenAPI
+  description: Instant voice cloning via POST /voices/clone. Upload a short audio
+    sample (wav, mp3, flac, aiff) as multipart/form-data to produce a
+    production-ready custom voice with no training step.
+- aid: podcastle:transcription
+  name: Podcastle Transcription
+  tags:
+  - Transcription
+  - Speech to Text
+  - Captions
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://help.podcastle.ai/en/articles/9903954-generating-and-converting-text-to-speech
+  baseURL: https://api.async.com
+  properties:
+  - url: https://async.com/
+    type: Documentation
+  description: Transcription and speech-to-text are Podcastle platform features
+    (multi-language transcription with speaker identification) available in the
+    product, console, and credit-based plans. A standalone transcription
+    endpoint is not documented in the public Async Voice API as of the catalog
+    date; this entry is documented as accurately as the public material allows.
+common:
+- type: LinkedIn
+  url: https://www.linkedin.com/company/podcastle-ai
+- type: Website
+  url: https://podcastle.ai
+- type: Documentation
+  url: https://docs.async.com
+- type: Plans
+  url: plans/podcastle-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/podcastle-rate-limits.yml
+- type: FinOps
+  url: finops/podcastle-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

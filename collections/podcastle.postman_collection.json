@@ -1,0 +1,365 @@
+{
+  "item": [
+    {
+      "id": "a1f6b2c0-1111-4a01-9c01-aa01bb01cc01",
+      "name": "Text to Speech",
+      "description": {
+        "content": "Synthesize speech from text in batch, streaming, or with word timestamps.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a1f6b2c0-1111-4a01-9c01-aa01bb01cc02",
+          "name": "Generate audio from the input text.",
+          "request": {
+            "name": "Generate audio from the input text.",
+            "description": {
+              "content": "Converts a full transcript into a single audio file. Only async_flash_v1.0 is documented as supported on this endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "text_to_speech"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "x-api-key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "version",
+                "value": "{{version}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "audio/mpeg"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"model_id\": \"async_flash_v1.0\",\n  \"transcript\": \"Hello from Podcastle and Async.\",\n  \"voice\": {\n    \"mode\": \"id\",\n    \"id\": \"<voice_id>\"\n  },\n  \"output_format\": {\n    \"container\": \"mp3\",\n    \"sample_rate\": 44100,\n    \"bit_rate\": 192000\n  },\n  \"language\": \"en\",\n  \"speed_control\": 1.0,\n  \"stability\": 50\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a1f6b2c0-1111-4a01-9c01-aa01bb01cc03",
+          "name": "Stream audio while it is being generated.",
+          "request": {
+            "name": "Stream audio while it is being generated.",
+            "description": {
+              "content": "Streams synthesized audio as binary chunks. Supports async_pro_v1.0, async_flash_v1.5, and async_flash_v1.0.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "text_to_speech",
+                "streaming"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "x-api-key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "version",
+                "value": "{{version}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/octet-stream"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"model_id\": \"async_flash_v1.5\",\n  \"transcript\": \"Streaming low-latency speech.\",\n  \"voice\": {\n    \"mode\": \"id\",\n    \"id\": \"<voice_id>\"\n  },\n  \"output_format\": {\n    \"container\": \"mp3\",\n    \"sample_rate\": 44100\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a1f6b2c0-1111-4a01-9c01-aa01bb01cc04",
+          "name": "Generate audio with word-level timestamps.",
+          "request": {
+            "name": "Generate audio with word-level timestamps.",
+            "description": {
+              "content": "Returns base64-encoded audio plus a word-level alignment object. Only async_flash_v1.0 is documented as supported.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "text_to_speech",
+                "with_timestamps"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "x-api-key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "version",
+                "value": "{{version}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"model_id\": \"async_flash_v1.0\",\n  \"transcript\": \"Words with timing.\",\n  \"voice\": {\n    \"mode\": \"id\",\n    \"id\": \"<voice_id>\"\n  },\n  \"output_format\": {\n    \"container\": \"mp3\",\n    \"sample_rate\": 44100\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "a1f6b2c0-2222-4a02-9c02-aa02bb02cc01",
+      "name": "Voices",
+      "description": {
+        "content": "Browse the voice library and create instant voice clones.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a1f6b2c0-2222-4a02-9c02-aa02bb02cc02",
+          "name": "List voices from the voice library.",
+          "request": {
+            "name": "List voices from the voice library.",
+            "description": {
+              "content": "Returns a paginated list of predefined and custom voices with optional filters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "voices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "x-api-key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "version",
+                "value": "{{version}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"limit\": 10,\n  \"language\": \"en\",\n  \"gender\": \"Female\",\n  \"my_voice\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a1f6b2c0-2222-4a02-9c02-aa02bb02cc03",
+          "name": "Create an instant voice clone.",
+          "request": {
+            "name": "Create an instant voice clone.",
+            "description": {
+              "content": "Creates a production-ready custom voice from a short audio sample. Supported formats: wav, mp3, flac, aiff.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "voices",
+                "clone"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "x-api-key",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "version",
+                "value": "{{version}}"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "audio",
+                  "type": "file",
+                  "src": []
+                },
+                {
+                  "key": "name",
+                  "type": "text",
+                  "value": "My Voice"
+                },
+                {
+                  "key": "description",
+                  "type": "text",
+                  "value": "Cloned voice"
+                },
+                {
+                  "key": "gender",
+                  "type": "text",
+                  "value": "Unspecified"
+                },
+                {
+                  "key": "enhance",
+                  "type": "text",
+                  "value": "false"
+                }
+              ]
+            }
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.async.com",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "v1",
+      "key": "version"
+    },
+    {
+      "type": "string",
+      "value": "<your-api-key>",
+      "key": "apiKey"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c0ffee01-0000-4a00-9000-podcastle0001",
+    "name": "Async (Podcastle) Voice API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Async Voice API behind Podcastle. Low-latency text-to-speech, a voice library, and instant voice cloning, served from https://api.async.com and authenticated with an x-api-key header plus a version header.\n\nContact Support:\n URL: https://docs.async.com",
+      "type": "text/plain"
+    }
+  }
+}

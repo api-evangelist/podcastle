@@ -1,0 +1,225 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Podcastle
+providerId: podcastle
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- AI
+- Audio
+- Text to Speech
+- Voice Cloning
+- Podcasting
+- Plans
+description: >-
+  Podcastle has two pricing surfaces. The consumer creation platform (now
+  branded Async) uses subscription tiers with monthly AI credits; the developer
+  Async Voice API uses pay-per-use, per-hour synthesis pricing with a free
+  trial. Voice cloning is included with the API tiers. Exact per-hour and
+  per-credit figures change frequently; verify on the pricing pages during
+  reconciliation.
+notes: >-
+  Platform subscription tiers and AI-credit allowances are taken from
+  async.com/pricing; Voice API per-hour rates are taken from the Async
+  developer pages. Values are subject to change and are not reconciled here.
+sources:
+- https://async.com/pricing
+- https://async.com/async-voice-api
+- https://docs.async.com
+plans:
+- id: podcastle-free
+  name: Free
+  type: free
+  description: >-
+    Entry tier for the creation platform with a one-time AI-credit allowance
+    and capped recording, storage, and transcription.
+  entries:
+  - label: AI Credits (lifetime)
+    name: free_ai_credits
+    type: free
+    metric: credits
+    limit: 10
+    timeFrame: lifetime
+    geo: global
+    unit: 1
+    price: $0
+    userMultiplied: false
+  - label: Transcription (lifetime)
+    name: free_transcription
+    type: free
+    metric: hours
+    limit: 1
+    timeFrame: lifetime
+    geo: global
+    unit: 1
+    price: $0
+    userMultiplied: false
+  elements:
+  - name: Recording and Editing
+  - name: Text-to-Speech
+  - name: Transcription
+- id: podcastle-essentials
+  name: Essentials
+  type: subscription
+  description: >-
+    Mid subscription tier with a monthly AI-credit allowance and higher
+    transcription limits.
+  entries:
+  - label: AI Credits (monthly)
+    name: essentials_ai_credits
+    type: recurring
+    metric: credits
+    limit: 450
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: see async.com/pricing
+    userMultiplied: false
+  - label: Transcription (monthly)
+    name: essentials_transcription
+    type: recurring
+    metric: hours
+    limit: 10
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: included
+    userMultiplied: false
+  elements:
+  - name: Recording and Editing
+  - name: Text-to-Speech
+  - name: Transcription
+- id: podcastle-pro
+  name: Pro
+  type: subscription
+  description: >-
+    Most popular subscription tier with a larger monthly AI-credit allowance and
+    higher recording, storage, and transcription limits.
+  entries:
+  - label: AI Credits (monthly)
+    name: pro_ai_credits
+    type: recurring
+    metric: credits
+    limit: 1200
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: see async.com/pricing
+    userMultiplied: false
+  - label: Transcription (monthly)
+    name: pro_transcription
+    type: recurring
+    metric: hours
+    limit: 25
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: included
+    userMultiplied: false
+  elements:
+  - name: Recording and Editing
+  - name: Text-to-Speech
+  - name: Transcription
+  - name: Voice Cloning
+- id: podcastle-teams
+  name: Teams
+  type: subscription
+  description: >-
+    Collaboration tier with the largest monthly AI-credit allowance and team
+    workspace features.
+  entries:
+  - label: AI Credits (monthly)
+    name: teams_ai_credits
+    type: recurring
+    metric: credits
+    limit: 3000
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: see async.com/pricing
+    userMultiplied: false
+  elements:
+  - name: Team Workspaces
+  - name: Text-to-Speech
+  - name: Transcription
+  - name: Voice Cloning
+- id: podcastle-voice-api
+  name: Async Voice API (Pay-as-you-go)
+  type: usage
+  description: >-
+    Developer Voice API billed per hour of synthesized audio, with a free trial
+    and voice cloning included. Async Flash models are the lower-cost tier and
+    Async Pro the premium tier.
+  entries:
+  - label: Free Trial
+    name: api_free_trial
+    type: free
+    metric: minutes
+    limit: 10
+    timeFrame: lifetime
+    geo: global
+    unit: 1
+    price: $0 (no credit card required)
+    userMultiplied: false
+  - label: Async Flash Series
+    name: api_flash
+    type: usage
+    metric: hours
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: from $0.50 per hour
+    userMultiplied: false
+  - label: Async Pro Series
+    name: api_pro
+    type: usage
+    metric: hours
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: from $1.00 per hour
+    userMultiplied: false
+  - label: Voice Cloning
+    name: api_voice_cloning
+    type: usage
+    metric: clones
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: included
+    userMultiplied: false
+  elements:
+  - name: Text-to-Speech
+  - name: Streaming Text-to-Speech
+  - name: WebSocket Text-to-Speech
+  - name: Voices
+  - name: Voice Cloning
+- id: podcastle-business
+  name: Business
+  type: enterprise
+  description: >-
+    Custom enterprise plan with negotiated volume terms, dedicated support, and
+    higher reliability commitments. Contact sales.
+  entries:
+  - label: Enterprise Agreement
+    name: business
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Custom Volume Pricing
+  - name: Dedicated Support
+  - name: Account Management
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,60 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Podcastle
+providerId: podcastle
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- AI
+- Audio
+- Text to Speech
+- Voice Cloning
+- Podcasting
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  The Async Voice API behind Podcastle enforces per-account rate limits and
+  returns HTTP 429 with a RATE_LIMIT_EXCEEDED error code when limits are
+  exceeded. The published documentation surfaces the throttling response and
+  error model but does not list specific per-account RPM, concurrency, or
+  per-hour caps. Consumer platform usage is governed instead by monthly AI
+  credits and transcription-hour allowances per subscription tier. Specific
+  numeric limits are not reconciled in this artifact.
+notes: >-
+  Verify concrete per-account request and concurrency limits in the Async
+  developer console on reconciliation. Consumer-platform throughput is bounded
+  by AI credits and transcription hours per plan rather than by request-rate
+  limits.
+sources:
+- https://docs.async.com/welcome-to-async-voice-api-990330m0
+- https://docs.async.com/list-voices-16699698e0
+- https://async.com/pricing
+responseCodes:
+  throttled: 429
+limits:
+- name: Requests Per Account
+  scope: account
+  metric: requests
+  limit: see provider documentation
+  notes: Per-account request limits enforced by the Async Voice API; exceeding them returns HTTP 429 RATE_LIMIT_EXCEEDED.
+- name: AI Credits
+  scope: account
+  metric: credits
+  limit: per subscription tier (10 lifetime free, 450/1200/3000 monthly)
+  notes: Consumer platform generative actions consume monthly AI credits per plan; credits reset monthly and are non-refundable once used.
+- name: Transcription Hours
+  scope: account
+  metric: hours
+  limit: per subscription tier (1 lifetime free, 10/25 monthly)
+  notes: Transcription is capped per plan on the consumer platform.
+policies:
+- name: Tiered Limits
+  description: Allowances and limits increase across Free, Essentials, Pro, Teams, and Business tiers, and across the Voice API pay-as-you-go and enterprise plans.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and retry after receiving HTTP 429 RATE_LIMIT_EXCEEDED responses.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

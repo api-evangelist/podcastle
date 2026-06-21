@@ -1,0 +1,98 @@
+aid: podcastle
+name: Podcastle
+review:
+  question: Does Podcastle (Async Voice API) expose a documented public WebSocket API?
+  answer: true
+  date: '2026-06-21'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    The Async Voice API behind Podcastle documents a real WebSocket endpoint
+    (wss://api.async.com/text_to_speech/websocket/ws) for incremental,
+    low-latency text-to-speech streaming. An AsyncAPI document was not authored
+    in this initial catalog pass; the WebSocket surface is described here in the
+    review and referenced in apis.yml and the OpenAPI overview. A follow-up
+    pass can model the WebSocket channel and its operations (initializeConnection,
+    sendText, closeConnection, plus audioOutput / finalOutput server messages)
+    in AsyncAPI.
+findings:
+  summary: |
+    Podcastle's developer engine, Async, exposes a real REST Voice API at
+    https://api.async.com authenticated with an x-api-key header and a required
+    version header (for example v1). It documents text-to-speech (batch,
+    streaming, and word-timestamped), a voice library listing, and instant
+    voice cloning. It additionally documents a real WebSocket endpoint for
+    incremental TTS streaming. Transcription is marketed as a Podcastle
+    platform feature with speaker identification but is not exposed as a
+    standalone documented endpoint in the public Voice API as of the review
+    date. The vendor rebranded its developer platform from Podcastle to Async;
+    podcastle.ai and async.com point at the same company.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.async.com
+      documented: true
+    - protocol: WebSocket
+      scheme: wss
+      baseURL: wss://api.async.com/text_to_speech/websocket/ws
+      documented: true
+      note: Incremental low-latency TTS; query params api_key and version; client ops initializeConnection / sendText / closeConnection; server messages audioOutput and finalOutput.
+  endpointsConfirmedRest:
+    - POST https://api.async.com/text_to_speech
+    - POST https://api.async.com/text_to_speech/streaming
+    - POST https://api.async.com/text_to_speech/with_timestamps
+    - POST https://api.async.com/voices
+    - POST https://api.async.com/voices/clone
+  endpointsConfirmedWebSocket:
+    - WSS wss://api.async.com/text_to_speech/websocket/ws
+  authentication:
+    scheme: apiKey
+    restHeaders:
+      - x-api-key
+      - version
+    webSocketQueryParams:
+      - api_key
+      - version
+  notDocumented:
+    - Standalone transcription / speech-to-text REST endpoint (platform feature only).
+    - Get / update / delete / preview single-voice endpoints (not confirmed in public docs).
+    - Official public GitHub organization (no verified podcastle/async org found).
+sources:
+  - url: https://docs.async.com/welcome-to-async-voice-api-990330m0
+    type: APIReference
+    note: Voice API overview; lists TTS endpoints and models (async_pro_v1.0, async_flash_v1.5, async_flash_v1.0).
+  - url: https://docs.async.com/text-to-speech-18760785e0
+    type: Documentation
+    note: POST /text_to_speech; x-api-key and version headers; request body and audio response.
+  - url: https://docs.async.com/text-to-speech-stream-16699696e0
+    type: Documentation
+    note: POST /text_to_speech/streaming; octet-stream binary audio response.
+  - url: https://docs.async.com/text-to-speech-with-word-timestamps-18761064e0
+    type: Documentation
+    note: POST /text_to_speech/with_timestamps; returns audio_base64 plus word alignment arrays.
+  - url: https://docs.async.com/text-to-speech-websocket-3477526w0
+    type: Documentation
+    note: WSS /text_to_speech/websocket/ws; incremental TTS with initializeConnection / sendText / closeConnection.
+  - url: https://docs.async.com/list-voices-16699698e0
+    type: Documentation
+    note: POST /voices; paginated voice library with model/language/accent/gender/style filters.
+  - url: https://docs.async.com/clone-voice-16699697e0
+    type: Documentation
+    note: POST /voices/clone; multipart/form-data audio upload for instant cloning.
+  - url: https://async.com/async-voice-api
+    type: Website
+    note: Developer Voice API marketing; per-hour pricing (Flash from $0.50/hr, Pro from $1.00/hr) and free trial.
+  - url: https://async.com/pricing
+    type: Website
+    note: Consumer platform subscription tiers and monthly AI-credit / transcription allowances.
+  - url: https://async.com/blog/podcastle-is-now-async/
+    type: Website
+    note: Confirms the Podcastle to Async rebrand of the developer platform.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    A real WebSocket surface exists and is documented. It is recorded in this
+    review and reflected in the Text-to-Speech API entry of apis.yml. An
+    AsyncAPI artifact was deferred to a follow-up pass; no SSE or WebSocket
+    spec was fabricated in this initial catalog build.

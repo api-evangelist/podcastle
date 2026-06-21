@@ -1,0 +1,111 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Async (Podcastle) Voice API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "apikey": {
+        "key": "x-api-key",
+        "value": "{{apiKey}}",
+        "in": "header"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Text to Speech",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate audio from the input text.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.async.com/text_to_speech",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"model_id\": \"async_flash_v1.0\",\n  \"transcript\": \"Hello from Podcastle and Async.\",\n  \"voice\": { \"mode\": \"id\", \"id\": \"<voice_id>\" },\n  \"output_format\": { \"container\": \"mp3\", \"sample_rate\": 44100, \"bit_rate\": 192000 }\n}"
+            }
+          },
+          "docs": "Converts a full transcript into a single audio file. Only async_flash_v1.0 is documented as supported on this endpoint."
+        },
+        {
+          "info": {
+            "name": "Stream audio while it is being generated.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.async.com/text_to_speech/streaming",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"model_id\": \"async_flash_v1.5\",\n  \"transcript\": \"Streaming low-latency speech.\",\n  \"voice\": { \"mode\": \"id\", \"id\": \"<voice_id>\" },\n  \"output_format\": { \"container\": \"mp3\", \"sample_rate\": 44100 }\n}"
+            }
+          },
+          "docs": "Streams synthesized audio as binary chunks. Supports async_pro_v1.0, async_flash_v1.5, and async_flash_v1.0."
+        },
+        {
+          "info": {
+            "name": "Generate audio with word-level timestamps.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.async.com/text_to_speech/with_timestamps",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"model_id\": \"async_flash_v1.0\",\n  \"transcript\": \"Words with timing.\",\n  \"voice\": { \"mode\": \"id\", \"id\": \"<voice_id>\" },\n  \"output_format\": { \"container\": \"mp3\", \"sample_rate\": 44100 }\n}"
+            }
+          },
+          "docs": "Returns base64-encoded audio plus a word-level alignment object. Only async_flash_v1.0 is documented as supported."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Voices",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List voices from the voice library.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.async.com/voices",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"limit\": 10,\n  \"language\": \"en\",\n  \"gender\": \"Female\",\n  \"my_voice\": false\n}"
+            }
+          },
+          "docs": "Returns a paginated list of predefined and custom voices with optional filters for model, language, accent, gender, and style."
+        },
+        {
+          "info": {
+            "name": "Create an instant voice clone.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.async.com/voices/clone",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Creates a production-ready custom voice from a short audio sample (multipart/form-data). Supported formats: wav, mp3, flac, aiff."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
