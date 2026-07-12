@@ -92,6 +92,12 @@ apis:
     endpoint is not documented in the public Async Voice API as of the catalog
     date; this entry is documented as accurately as the public material allows.
 common:
+- type: DomainSecurity
+  url: security/podcastle-domain-security.yml
+- type: Authentication
+  url: authentication/podcastle-authentication.yml
+- url: https://podcastle.ai/blog/feed/
+  type: Blog
 - type: LinkedIn
   url: https://www.linkedin.com/company/podcastle-ai
 - type: Website
