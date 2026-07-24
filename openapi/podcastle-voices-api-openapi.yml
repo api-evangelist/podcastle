@@ -1,0 +1,231 @@
+openapi: 3.0.1
+info:
+  title: Async (Podcastle) Voice Text to Speech Voices API
+  description: The Async Voice API is the developer platform behind Podcastle's AI audio engine. It exposes low-latency, human-like text-to-speech, a browsable voice library, and instant voice cloning. Podcastle.ai rebranded its developer platform as Async; the API is served from https://api.async.com and authenticated with an x-api-key header plus a version header. Only documented endpoints and fields are modeled here; no endpoints are fabricated.
+  termsOfService: https://async.com/terms
+  contact:
+    name: Async Support
+    url: https://docs.async.com
+  version: v1
+servers:
+- url: https://api.async.com
+  description: Async Voice API production base URL
+security:
+- apiKey: []
+tags:
+- name: Voices
+  description: Browse the voice library and create instant voice clones.
+paths:
+  /voices:
+    post:
+      operationId: listVoices
+      tags:
+      - Voices
+      summary: List voices from the voice library.
+      description: Returns a paginated list of predefined and custom voices. Filters by model, language, accent, gender, and style are supported, along with a cursor for pagination.
+      parameters:
+      - $ref: '#/components/parameters/Version'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ListVoicesRequest'
+      responses:
+        '200':
+          description: A page of voices.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListVoicesResponse'
+        '401':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '429':
+          $ref: '#/components/responses/Error'
+        '500':
+          $ref: '#/components/responses/Error'
+  /voices/clone:
+    post:
+      operationId: cloneVoice
+      tags:
+      - Voices
+      summary: Create an instant voice clone.
+      description: 'Creates a production-ready custom voice from a short audio clip. Accepts multipart/form-data with the audio sample and optional metadata. Supported audio formats: wav, mp3, flac, aiff.'
+      parameters:
+      - $ref: '#/components/parameters/Version'
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CloneVoiceRequest'
+      responses:
+        '200':
+          description: The newly created cloned voice.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CloneVoiceResponse'
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '429':
+          $ref: '#/components/responses/Error'
+        '500':
+          $ref: '#/components/responses/Error'
+components:
+  schemas:
+    ListVoicesResponse:
+      type: object
+      properties:
+        voices:
+          type: array
+          items:
+            $ref: '#/components/schemas/VoiceSummary'
+        next_cursor:
+          type: string
+          description: Cursor for fetching the next page.
+    CloneVoiceResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        language:
+          type: string
+          description: ISO 639-1 codes, comma-separated.
+    VoiceSummary:
+      type: object
+      properties:
+        voice_id:
+          type: string
+        voice_type:
+          type: string
+          enum:
+          - PREDEFINED
+          - CUSTOM
+        name:
+          type: string
+        description:
+          type: string
+        language:
+          type: string
+        gender:
+          type: string
+        accent:
+          type: string
+        style:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+    ListVoicesRequest:
+      type: object
+      properties:
+        limit:
+          type: integer
+          description: Number of voices per page.
+          minimum: 1
+          maximum: 100
+          default: 10
+        model_id:
+          type: string
+          description: Filter by model.
+        language:
+          type: string
+          description: Filter by language (ISO 639-1).
+        accent:
+          type: string
+          description: Filter by accent.
+        gender:
+          type: string
+          description: Filter by gender.
+          enum:
+          - Male
+          - Female
+          - Neutral
+          - Unspecified
+        style:
+          type: string
+          description: Filter by style.
+        my_voice:
+          type: boolean
+          description: Return only voices owned by the current user.
+        after:
+          type: string
+          description: Pagination cursor for subsequent pages.
+    Error:
+      type: object
+      properties:
+        detail:
+          type: object
+          properties:
+            error_code:
+              type: string
+            message:
+              type: string
+            extra:
+              type: object
+    CloneVoiceRequest:
+      type: object
+      properties:
+        audio:
+          type: string
+          format: binary
+          description: 'Audio clip file. Supported formats: wav, mp3, flac, aiff.'
+        name:
+          type: string
+          description: Voice name or label.
+        description:
+          type: string
+          description: Voice description.
+        accent:
+          type: string
+          description: Accent specification.
+        gender:
+          type: string
+          description: Voice gender.
+          enum:
+          - Male
+          - Female
+          - Neutral
+          - Unspecified
+        style:
+          type: string
+          description: Voice style(s), comma-separated.
+        enhance:
+          type: boolean
+          description: Apply noise reduction to the sample.
+          default: false
+      required:
+      - audio
+      - name
+  responses:
+    Error:
+      description: Error response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    Version:
+      name: version
+      in: header
+      required: true
+      description: API version, for example v1.
+      schema:
+        type: string
+        example: v1
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: API key issued from the Async developer console.

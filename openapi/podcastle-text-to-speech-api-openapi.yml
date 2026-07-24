@@ -1,0 +1,263 @@
+openapi: 3.0.1
+info:
+  title: Async (Podcastle) Voice Text to Speech API
+  description: The Async Voice API is the developer platform behind Podcastle's AI audio engine. It exposes low-latency, human-like text-to-speech, a browsable voice library, and instant voice cloning. Podcastle.ai rebranded its developer platform as Async; the API is served from https://api.async.com and authenticated with an x-api-key header plus a version header. Only documented endpoints and fields are modeled here; no endpoints are fabricated.
+  termsOfService: https://async.com/terms
+  contact:
+    name: Async Support
+    url: https://docs.async.com
+  version: v1
+servers:
+- url: https://api.async.com
+  description: Async Voice API production base URL
+security:
+- apiKey: []
+tags:
+- name: Text to Speech
+  description: Synthesize speech from text in batch, streaming, or with word timestamps.
+paths:
+  /text_to_speech:
+    post:
+      operationId: createSpeech
+      tags:
+      - Text to Speech
+      summary: Generate audio from the input text.
+      description: Converts a full transcript into a single audio file. On this endpoint only async_flash_v1.0 is documented as supported.
+      parameters:
+      - $ref: '#/components/parameters/Version'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TextToSpeechRequest'
+      responses:
+        '200':
+          description: Audio file in the requested container format.
+          content:
+            audio/mpeg:
+              schema:
+                type: string
+                format: binary
+            audio/wav:
+              schema:
+                type: string
+                format: binary
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '429':
+          $ref: '#/components/responses/Error'
+        '500':
+          $ref: '#/components/responses/Error'
+  /text_to_speech/streaming:
+    post:
+      operationId: createSpeechStreaming
+      tags:
+      - Text to Speech
+      summary: Stream audio while it is being generated.
+      description: Streams synthesized audio as it is generated, returning binary chunks as an octet-stream. Supports async_pro_v1.0, async_flash_v1.5, and async_flash_v1.0.
+      parameters:
+      - $ref: '#/components/parameters/Version'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TextToSpeechRequest'
+      responses:
+        '200':
+          description: Binary audio stream.
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '429':
+          $ref: '#/components/responses/Error'
+        '500':
+          $ref: '#/components/responses/Error'
+  /text_to_speech/with_timestamps:
+    post:
+      operationId: createSpeechWithTimestamps
+      tags:
+      - Text to Speech
+      summary: Generate audio with word-level timestamps.
+      description: Returns base64-encoded audio plus a word-level alignment object with per-word start and end times in milliseconds. On this endpoint only async_flash_v1.0 is documented as supported.
+      parameters:
+      - $ref: '#/components/parameters/Version'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TextToSpeechRequest'
+      responses:
+        '200':
+          description: Audio with word alignment.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TimestampedSpeechResponse'
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '429':
+          $ref: '#/components/responses/Error'
+        '500':
+          $ref: '#/components/responses/Error'
+components:
+  schemas:
+    Voice:
+      type: object
+      properties:
+        mode:
+          type: string
+          description: Voice selection mode.
+          enum:
+          - id
+        id:
+          type: string
+          description: Voice identifier from the voice library.
+      required:
+      - mode
+      - id
+    OutputFormat:
+      type: object
+      properties:
+        container:
+          type: string
+          description: Audio container format.
+          enum:
+          - raw
+          - mp3
+          - wav
+        encoding:
+          type: string
+          description: PCM encoding (used with the raw container).
+          enum:
+          - pcm_f32le
+          - pcm_s16le
+          - pcm_mulaw
+          default: pcm_s16le
+        sample_rate:
+          type: integer
+          description: Sample rate in Hz.
+          minimum: 8000
+          maximum: 48000
+        bit_rate:
+          type: integer
+          description: Bit rate in bits per second (MP3 only).
+          minimum: 32000
+          maximum: 320000
+          default: 192000
+      required:
+      - container
+      - sample_rate
+    TextToSpeechRequest:
+      type: object
+      properties:
+        model_id:
+          type: string
+          description: Synthesis model. async_pro_v1.0 (English, highest quality), async_flash_v1.5 (six languages, optimized for speed), and async_flash_v1.0 (legacy, fifteen languages). The batch and with_timestamps endpoints document support for async_flash_v1.0.
+          enum:
+          - async_pro_v1.0
+          - async_flash_v1.5
+          - async_flash_v1.0
+        transcript:
+          type: string
+          description: The text to convert to speech.
+        voice:
+          $ref: '#/components/schemas/Voice'
+        output_format:
+          $ref: '#/components/schemas/OutputFormat'
+        language:
+          type: string
+          description: Force synthesis in the specified language (ISO 639-1).
+        speed_control:
+          type: number
+          description: Playback speed multiplier.
+          minimum: 0.7
+          maximum: 2.0
+        stability:
+          type: integer
+          description: Voice stability.
+          minimum: 0
+          maximum: 100
+      required:
+      - model_id
+      - transcript
+      - voice
+      - output_format
+    TimestampedSpeechResponse:
+      type: object
+      properties:
+        audio_base64:
+          type: string
+          description: Base64-encoded audio in the requested format.
+        alignment:
+          type: object
+          description: Word-level timing aligned with the synthesized audio.
+          properties:
+            words:
+              type: array
+              items:
+                type: string
+            word_start_times_milliseconds:
+              type: array
+              items:
+                type: number
+            word_end_times_milliseconds:
+              type: array
+              items:
+                type: number
+    Error:
+      type: object
+      properties:
+        detail:
+          type: object
+          properties:
+            error_code:
+              type: string
+            message:
+              type: string
+            extra:
+              type: object
+  responses:
+    Error:
+      description: Error response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    Version:
+      name: version
+      in: header
+      required: true
+      description: API version, for example v1.
+      schema:
+        type: string
+        example: v1
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: API key issued from the Async developer console.
