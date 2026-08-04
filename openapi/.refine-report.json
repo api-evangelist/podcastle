@@ -1,0 +1,16 @@
+{
+  "provider": "podcastle",
+  "sources": [
+    "podcastle-text-to-speech-api-openapi.yml",
+    "podcastle-voices-api-openapi.yml"
+  ],
+  "outputs": [
+    "podcastle-text-to-speech-api-openapi.yml",
+    "podcastle-voices-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
