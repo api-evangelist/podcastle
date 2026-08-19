@@ -1,0 +1,1251 @@
+{
+  "item": [
+    {
+      "id": "3098468f-2817-4345-99a9-c9e0da93cf91",
+      "name": "Text to Speech",
+      "description": {
+        "content": "Synthesize speech from text in batch, streaming, or with word timestamps.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6c0b3e8d-37db-4589-aa6b-01e7896912fc",
+          "name": "Generate audio from the input text.",
+          "request": {
+            "name": "Generate audio from the input text.",
+            "description": {
+              "content": "Converts a full transcript into a single audio file. On this endpoint only async_flash_v1.0 is documented as supported.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "text_to_speech"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API version, for example v1.",
+                "key": "version",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "audio/mpeg"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"model_id\": \"<string>\",\n  \"transcript\": \"<string>\",\n  \"voice\": {\n    \"mode\": \"<string>\",\n    \"id\": \"<string>\"\n  },\n  \"output_format\": {\n    \"container\": \"<string>\",\n    \"sample_rate\": \"<integer>\",\n    \"encoding\": \"pcm_s16le\",\n    \"bit_rate\": 192000\n  },\n  \"language\": \"<string>\",\n  \"speed_control\": \"<number>\",\n  \"stability\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "195c673f-f160-4913-a213-da0bad0ac6e2",
+              "name": "Audio file in the requested container format.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "text_to_speech"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API version, for example v1.",
+                    "key": "version",
+                    "value": "v1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "audio/mpeg"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model_id\": \"<string>\",\n  \"transcript\": \"<string>\",\n  \"voice\": {\n    \"mode\": \"<string>\",\n    \"id\": \"<string>\"\n  },\n  \"output_format\": {\n    \"container\": \"<string>\",\n    \"sample_rate\": \"<integer>\",\n    \"encoding\": \"pcm_s16le\",\n    \"bit_rate\": 192000\n  },\n  \"language\": \"<string>\",\n  \"speed_control\": \"<number>\",\n  \"stability\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "audio/mpeg"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "95194b81-5854-403d-a4d9-6dc45932a141",
+              "name": "Error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "text_to_speech"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API version, for example v1.",
+                    "key": "version",
+                    "value": "v1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model_id\": \"<string>\",\n  \"transcript\": \"<string>\",\n  \"voice\": {\n    \"mode\": \"<string>\",\n    \"id\": \"<string>\"\n  },\n  \"output_format\": {\n    \"container\": \"<string>\",\n    \"sample_rate\": \"<integer>\",\n    \"encoding\": \"pcm_s16le\",\n    \"bit_rate\": 192000\n  },\n  \"language\": \"<string>\",\n  \"speed_control\": \"<number>\",\n  \"stability\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": {\n    \"error_code\": \"string\",\n    \"message\": \"string\",\n    \"extra\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "17bcd630-3c6c-41a0-9e39-42d1c3167294",
+              "name": "Error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "text_to_speech"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API version, for example v1.",
+                    "key": "version",
+                    "value": "v1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model_id\": \"<string>\",\n  \"transcript\": \"<string>\",\n  \"voice\": {\n    \"mode\": \"<string>\",\n    \"id\": \"<string>\"\n  },\n  \"output_format\": {\n    \"container\": \"<string>\",\n    \"sample_rate\": \"<integer>\",\n    \"encoding\": \"pcm_s16le\",\n    \"bit_rate\": 192000\n  },\n  \"language\": \"<string>\",\n  \"speed_control\": \"<number>\",\n  \"stability\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": {\n    \"error_code\": \"string\",\n    \"message\": \"string\",\n    \"extra\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9155146d-3a07-4ecb-b583-9f76d3b2b5a9",
+              "name": "Error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "text_to_speech"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API version, for example v1.",
+                    "key": "version",
+                    "value": "v1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model_id\": \"<string>\",\n  \"transcript\": \"<string>\",\n  \"voice\": {\n    \"mode\": \"<string>\",\n    \"id\": \"<string>\"\n  },\n  \"output_format\": {\n    \"container\": \"<string>\",\n    \"sample_rate\": \"<integer>\",\n    \"encoding\": \"pcm_s16le\",\n    \"bit_rate\": 192000\n  },\n  \"language\": \"<string>\",\n  \"speed_control\": \"<number>\",\n  \"stability\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": {\n    \"error_code\": \"string\",\n    \"message\": \"string\",\n    \"extra\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "37b4fbbd-9b5e-4a4d-ab6e-fd1ee2820ef2",
+              "name": "Error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "text_to_speech"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API version, for example v1.",
+                    "key": "version",
+                    "value": "v1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model_id\": \"<string>\",\n  \"transcript\": \"<string>\",\n  \"voice\": {\n    \"mode\": \"<string>\",\n    \"id\": \"<string>\"\n  },\n  \"output_format\": {\n    \"container\": \"<string>\",\n    \"sample_rate\": \"<integer>\",\n    \"encoding\": \"pcm_s16le\",\n    \"bit_rate\": 192000\n  },\n  \"language\": \"<string>\",\n  \"speed_control\": \"<number>\",\n  \"stability\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": {\n    \"error_code\": \"string\",\n    \"message\": \"string\",\n    \"extra\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "acd9dae5-423f-4e2f-afa7-283afd630432",
+              "name": "Error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "text_to_speech"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API version, for example v1.",
+                    "key": "version",
+                    "value": "v1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model_id\": \"<string>\",\n  \"transcript\": \"<string>\",\n  \"voice\": {\n    \"mode\": \"<string>\",\n    \"id\": \"<string>\"\n  },\n  \"output_format\": {\n    \"container\": \"<string>\",\n    \"sample_rate\": \"<integer>\",\n    \"encoding\": \"pcm_s16le\",\n    \"bit_rate\": 192000\n  },\n  \"language\": \"<string>\",\n  \"speed_control\": \"<number>\",\n  \"stability\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": {\n    \"error_code\": \"string\",\n    \"message\": \"string\",\n    \"extra\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a45c283e-d40c-47a4-a8b2-06690bb8db66",
+          "name": "Stream audio while it is being generated.",
+          "request": {
+            "name": "Stream audio while it is being generated.",
+            "description": {
+              "content": "Streams synthesized audio as it is generated, returning binary chunks as an octet-stream. Supports async_pro_v1.0, async_flash_v1.5, and async_flash_v1.0.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "text_to_speech",
+                "streaming"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API version, for example v1.",
+                "key": "version",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/octet-stream"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"model_id\": \"<string>\",\n  \"transcript\": \"<string>\",\n  \"voice\": {\n    \"mode\": \"<string>\",\n    \"id\": \"<string>\"\n  },\n  \"output_format\": {\n    \"container\": \"<string>\",\n    \"sample_rate\": \"<integer>\",\n    \"encoding\": \"pcm_s16le\",\n    \"bit_rate\": 192000\n  },\n  \"language\": \"<string>\",\n  \"speed_control\": \"<number>\",\n  \"stability\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c6f559f5-1341-4e82-b2fc-d15771665bf9",
+              "name": "Binary audio stream.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "text_to_speech",
+                    "streaming"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API version, for example v1.",
+                    "key": "version",
+                    "value": "v1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/octet-stream"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model_id\": \"<string>\",\n  \"transcript\": \"<string>\",\n  \"voice\": {\n    \"mode\": \"<string>\",\n    \"id\": \"<string>\"\n  },\n  \"output_format\": {\n    \"container\": \"<string>\",\n    \"sample_rate\": \"<integer>\",\n    \"encoding\": \"pcm_s16le\",\n    \"bit_rate\": 192000\n  },\n  \"language\": \"<string>\",\n  \"speed_control\": \"<number>\",\n  \"stability\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/octet-stream"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "627a3b97-2947-4d64-80fd-f145f658912d",
+              "name": "Error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "text_to_speech",
+                    "streaming"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API version, for example v1.",
+                    "key": "version",
+                    "value": "v1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model_id\": \"<string>\",\n  \"transcript\": \"<string>\",\n  \"voice\": {\n    \"mode\": \"<string>\",\n    \"id\": \"<string>\"\n  },\n  \"output_format\": {\n    \"container\": \"<string>\",\n    \"sample_rate\": \"<integer>\",\n    \"encoding\": \"pcm_s16le\",\n    \"bit_rate\": 192000\n  },\n  \"language\": \"<string>\",\n  \"speed_control\": \"<number>\",\n  \"stability\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": {\n    \"error_code\": \"string\",\n    \"message\": \"string\",\n    \"extra\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "df54c3fc-eaaa-4718-9841-ff9b7152d4f3",
+              "name": "Error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "text_to_speech",
+                    "streaming"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API version, for example v1.",
+                    "key": "version",
+                    "value": "v1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model_id\": \"<string>\",\n  \"transcript\": \"<string>\",\n  \"voice\": {\n    \"mode\": \"<string>\",\n    \"id\": \"<string>\"\n  },\n  \"output_format\": {\n    \"container\": \"<string>\",\n    \"sample_rate\": \"<integer>\",\n    \"encoding\": \"pcm_s16le\",\n    \"bit_rate\": 192000\n  },\n  \"language\": \"<string>\",\n  \"speed_control\": \"<number>\",\n  \"stability\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": {\n    \"error_code\": \"string\",\n    \"message\": \"string\",\n    \"extra\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9e97aecd-93a3-4904-8ddd-b0e02d9a6731",
+              "name": "Error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "text_to_speech",
+                    "streaming"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API version, for example v1.",
+                    "key": "version",
+                    "value": "v1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model_id\": \"<string>\",\n  \"transcript\": \"<string>\",\n  \"voice\": {\n    \"mode\": \"<string>\",\n    \"id\": \"<string>\"\n  },\n  \"output_format\": {\n    \"container\": \"<string>\",\n    \"sample_rate\": \"<integer>\",\n    \"encoding\": \"pcm_s16le\",\n    \"bit_rate\": 192000\n  },\n  \"language\": \"<string>\",\n  \"speed_control\": \"<number>\",\n  \"stability\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": {\n    \"error_code\": \"string\",\n    \"message\": \"string\",\n    \"extra\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "18647022-d645-4486-b908-1d85a5be4090",
+              "name": "Error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "text_to_speech",
+                    "streaming"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API version, for example v1.",
+                    "key": "version",
+                    "value": "v1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model_id\": \"<string>\",\n  \"transcript\": \"<string>\",\n  \"voice\": {\n    \"mode\": \"<string>\",\n    \"id\": \"<string>\"\n  },\n  \"output_format\": {\n    \"container\": \"<string>\",\n    \"sample_rate\": \"<integer>\",\n    \"encoding\": \"pcm_s16le\",\n    \"bit_rate\": 192000\n  },\n  \"language\": \"<string>\",\n  \"speed_control\": \"<number>\",\n  \"stability\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": {\n    \"error_code\": \"string\",\n    \"message\": \"string\",\n    \"extra\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "27db7563-9cdf-40b5-8217-0d07091b0623",
+              "name": "Error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "text_to_speech",
+                    "streaming"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API version, for example v1.",
+                    "key": "version",
+                    "value": "v1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model_id\": \"<string>\",\n  \"transcript\": \"<string>\",\n  \"voice\": {\n    \"mode\": \"<string>\",\n    \"id\": \"<string>\"\n  },\n  \"output_format\": {\n    \"container\": \"<string>\",\n    \"sample_rate\": \"<integer>\",\n    \"encoding\": \"pcm_s16le\",\n    \"bit_rate\": 192000\n  },\n  \"language\": \"<string>\",\n  \"speed_control\": \"<number>\",\n  \"stability\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": {\n    \"error_code\": \"string\",\n    \"message\": \"string\",\n    \"extra\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "24e51171-db35-4abc-b421-0bebfb408509",
+          "name": "Generate audio with word-level timestamps.",
+          "request": {
+            "name": "Generate audio with word-level timestamps.",
+            "description": {
+              "content": "Returns base64-encoded audio plus a word-level alignment object with per-word start and end times in milliseconds. On this endpoint only async_flash_v1.0 is documented as supported.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "text_to_speech",
+                "with_timestamps"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API version, for example v1.",
+                "key": "version",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"model_id\": \"<string>\",\n  \"transcript\": \"<string>\",\n  \"voice\": {\n    \"mode\": \"<string>\",\n    \"id\": \"<string>\"\n  },\n  \"output_format\": {\n    \"container\": \"<string>\",\n    \"sample_rate\": \"<integer>\",\n    \"encoding\": \"pcm_s16le\",\n    \"bit_rate\": 192000\n  },\n  \"language\": \"<string>\",\n  \"speed_control\": \"<number>\",\n  \"stability\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c62f732c-bdce-4fa7-866f-c68b2e9334fe",
+              "name": "Audio with word alignment.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "text_to_speech",
+                    "with_timestamps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API version, for example v1.",
+                    "key": "version",
+                    "value": "v1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model_id\": \"<string>\",\n  \"transcript\": \"<string>\",\n  \"voice\": {\n    \"mode\": \"<string>\",\n    \"id\": \"<string>\"\n  },\n  \"output_format\": {\n    \"container\": \"<string>\",\n    \"sample_rate\": \"<integer>\",\n    \"encoding\": \"pcm_s16le\",\n    \"bit_rate\": 192000\n  },\n  \"language\": \"<string>\",\n  \"speed_control\": \"<number>\",\n  \"stability\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"audio_base64\": \"string\",\n  \"alignment\": {\n    \"words\": [\n      \"string\",\n      \"string\"\n    ],\n    \"word_start_times_milliseconds\": [\n      3511.124973837505,\n      8849.96645779573\n    ],\n    \"word_end_times_milliseconds\": [\n      6690.802473587288,\n      9321.39389667809\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7e1c4a96-0c85-4fc6-b88d-b63fcb8f7024",
+              "name": "Error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "text_to_speech",
+                    "with_timestamps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API version, for example v1.",
+                    "key": "version",
+                    "value": "v1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model_id\": \"<string>\",\n  \"transcript\": \"<string>\",\n  \"voice\": {\n    \"mode\": \"<string>\",\n    \"id\": \"<string>\"\n  },\n  \"output_format\": {\n    \"container\": \"<string>\",\n    \"sample_rate\": \"<integer>\",\n    \"encoding\": \"pcm_s16le\",\n    \"bit_rate\": 192000\n  },\n  \"language\": \"<string>\",\n  \"speed_control\": \"<number>\",\n  \"stability\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": {\n    \"error_code\": \"string\",\n    \"message\": \"string\",\n    \"extra\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "30501815-283c-4d35-b2d4-b552c79c96ed",
+              "name": "Error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "text_to_speech",
+                    "with_timestamps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API version, for example v1.",
+                    "key": "version",
+                    "value": "v1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model_id\": \"<string>\",\n  \"transcript\": \"<string>\",\n  \"voice\": {\n    \"mode\": \"<string>\",\n    \"id\": \"<string>\"\n  },\n  \"output_format\": {\n    \"container\": \"<string>\",\n    \"sample_rate\": \"<integer>\",\n    \"encoding\": \"pcm_s16le\",\n    \"bit_rate\": 192000\n  },\n  \"language\": \"<string>\",\n  \"speed_control\": \"<number>\",\n  \"stability\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": {\n    \"error_code\": \"string\",\n    \"message\": \"string\",\n    \"extra\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "08cb76d0-84d8-4648-95ff-5adceb5a4f38",
+              "name": "Error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "text_to_speech",
+                    "with_timestamps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API version, for example v1.",
+                    "key": "version",
+                    "value": "v1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model_id\": \"<string>\",\n  \"transcript\": \"<string>\",\n  \"voice\": {\n    \"mode\": \"<string>\",\n    \"id\": \"<string>\"\n  },\n  \"output_format\": {\n    \"container\": \"<string>\",\n    \"sample_rate\": \"<integer>\",\n    \"encoding\": \"pcm_s16le\",\n    \"bit_rate\": 192000\n  },\n  \"language\": \"<string>\",\n  \"speed_control\": \"<number>\",\n  \"stability\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": {\n    \"error_code\": \"string\",\n    \"message\": \"string\",\n    \"extra\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "81476021-2d28-4293-b527-5e62ecca4c88",
+              "name": "Error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "text_to_speech",
+                    "with_timestamps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API version, for example v1.",
+                    "key": "version",
+                    "value": "v1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model_id\": \"<string>\",\n  \"transcript\": \"<string>\",\n  \"voice\": {\n    \"mode\": \"<string>\",\n    \"id\": \"<string>\"\n  },\n  \"output_format\": {\n    \"container\": \"<string>\",\n    \"sample_rate\": \"<integer>\",\n    \"encoding\": \"pcm_s16le\",\n    \"bit_rate\": 192000\n  },\n  \"language\": \"<string>\",\n  \"speed_control\": \"<number>\",\n  \"stability\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": {\n    \"error_code\": \"string\",\n    \"message\": \"string\",\n    \"extra\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3813c2ff-8155-4b44-bdd8-2c6db3be1616",
+              "name": "Error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "text_to_speech",
+                    "with_timestamps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API version, for example v1.",
+                    "key": "version",
+                    "value": "v1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model_id\": \"<string>\",\n  \"transcript\": \"<string>\",\n  \"voice\": {\n    \"mode\": \"<string>\",\n    \"id\": \"<string>\"\n  },\n  \"output_format\": {\n    \"container\": \"<string>\",\n    \"sample_rate\": \"<integer>\",\n    \"encoding\": \"pcm_s16le\",\n    \"bit_rate\": 192000\n  },\n  \"language\": \"<string>\",\n  \"speed_control\": \"<number>\",\n  \"stability\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": {\n    \"error_code\": \"string\",\n    \"message\": \"string\",\n    \"extra\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.async.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "964690b9-b6a3-438f-9a9b-697850de0813",
+    "name": "Async (Podcastle) Voice Text to Speech API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Async Voice API is the developer platform behind Podcastle's AI audio engine. It exposes low-latency, human-like text-to-speech, a browsable voice library, and instant voice cloning. Podcastle.ai rebranded its developer platform as Async; the API is served from https://api.async.com and authenticated with an x-api-key header plus a version header. Only documented endpoints and fields are modeled here; no endpoints are fabricated.\n\nContact Support:\n Name: Async Support",
+      "type": "text/plain"
+    }
+  }
+}

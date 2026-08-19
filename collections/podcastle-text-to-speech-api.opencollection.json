@@ -1,0 +1,89 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Async (Podcastle) Voice Text to Speech API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Text to Speech",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate audio from the input text.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.async.com/text_to_speech",
+            "headers": [
+              {
+                "name": "version",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Converts a full transcript into a single audio file. On this endpoint only async_flash_v1.0 is documented as supported."
+        },
+        {
+          "info": {
+            "name": "Stream audio while it is being generated.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.async.com/text_to_speech/streaming",
+            "headers": [
+              {
+                "name": "version",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Streams synthesized audio as it is generated, returning binary chunks as an octet-stream. Supports async_pro_v1.0, async_flash_v1.5, and async_flash_v1.0."
+        },
+        {
+          "info": {
+            "name": "Generate audio with word-level timestamps.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.async.com/text_to_speech/with_timestamps",
+            "headers": [
+              {
+                "name": "version",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns base64-encoded audio plus a word-level alignment object with per-word start and end times in milliseconds. On this endpoint only async_flash_v1.0 is documented as supported."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
