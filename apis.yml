@@ -23,6 +23,12 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/podcastle.png
 tags:
+- Artificial Intelligence
+- Audio
+- Text-to-Speech
+- Voice Cloning
+- Podcasting
+tags_raw:
 - AI
 - Audio
 - Text to Speech
@@ -35,6 +41,10 @@ apis:
 - aid: podcastle:transcription
   name: Podcastle Transcription
   tags:
+  - Transcription
+  - Speech-to-Text
+  - Captions
+  tags_raw:
   - Transcription
   - Speech to Text
   - Captions
@@ -55,6 +65,8 @@ apis:
   humanURL: https://docs.async.com/welcome-to-async-voice-api-990330m0
   baseURL: https://api.async.com
   tags:
+  - Text-to-Speech
+  tags_raw:
   - Text to Speech
   properties:
   - type: OpenAPI
