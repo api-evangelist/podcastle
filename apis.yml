@@ -8,6 +8,18 @@ description: Podcastle is an AI audio and podcast creation platform whose develo
   API is served from https://api.async.com and authenticated with an x-api-key
   header plus a version header. Transcription is a Podcastle platform feature; no
   standalone transcription endpoint is documented in the public Voice API.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
