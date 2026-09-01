@@ -37,7 +37,7 @@ image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/podcastle.
 tags:
 - Artificial Intelligence
 - Audio
-- Text to Speech
+- Text-to-Speech
 - Voice Cloning
 - Podcasting
 tags_raw:
@@ -77,7 +77,7 @@ apis:
   humanURL: https://docs.async.com/welcome-to-async-voice-api-990330m0
   baseURL: https://api.async.com
   tags:
-  - Text to Speech
+  - Text-to-Speech
   tags_raw:
   - Text to Speech
   properties:
