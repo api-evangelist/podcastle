@@ -98,6 +98,8 @@ apis:
   humanURL: https://docs.async.com/welcome-to-async-voice-api-990330m0
   baseURL: https://api.async.com
   tags:
+  - Voice
+  tags_raw:
   - Voices
   properties:
   - type: OpenAPI
