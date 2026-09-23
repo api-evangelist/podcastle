@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
   title: Async (Podcastle) Voice Text to Speech API
   description: The Async Voice API is the developer platform behind Podcastle's AI audio engine. It exposes low-latency, human-like text-to-speech, a browsable voice library, and instant voice cloning. Podcastle.ai rebranded its developer platform as Async; the API is served from https://api.async.com and authenticated with an x-api-key header plus a version header. Only documented endpoints and fields are modeled here; no endpoints are fabricated.
@@ -13,15 +13,15 @@ servers:
 security:
 - apiKey: []
 tags:
-- name: Text to Speech
+- name: Text To Speech
   description: Synthesize speech from text in batch, streaming, or with word timestamps.
 paths:
   /text_to_speech:
     post:
       operationId: createSpeech
       tags:
-      - Text to Speech
-      summary: Generate audio from the input text.
+      - Text To Speech
+      summary: Generate audio from the input text
       description: Converts a full transcript into a single audio file. On this endpoint only async_flash_v1.0 is documented as supported.
       parameters:
       - $ref: '#/components/parameters/Version'
@@ -61,8 +61,8 @@ paths:
     post:
       operationId: createSpeechStreaming
       tags:
-      - Text to Speech
-      summary: Stream audio while it is being generated.
+      - Text To Speech
+      summary: Stream audio while it is being generated
       description: Streams synthesized audio as it is generated, returning binary chunks as an octet-stream. Supports async_pro_v1.0, async_flash_v1.5, and async_flash_v1.0.
       parameters:
       - $ref: '#/components/parameters/Version'
@@ -94,8 +94,8 @@ paths:
     post:
       operationId: createSpeechWithTimestamps
       tags:
-      - Text to Speech
-      summary: Generate audio with word-level timestamps.
+      - Text To Speech
+      summary: Generate audio with word-level timestamps
       description: Returns base64-encoded audio plus a word-level alignment object with per-word start and end times in milliseconds. On this endpoint only async_flash_v1.0 is documented as supported.
       parameters:
       - $ref: '#/components/parameters/Version'
@@ -170,6 +170,40 @@ components:
       required:
       - container
       - sample_rate
+    Error:
+      type: object
+      properties:
+        detail:
+          type: object
+          properties:
+            error_code:
+              type: string
+            message:
+              type: string
+            extra:
+              type: object
+    TimestampedSpeechResponse:
+      type: object
+      properties:
+        audio_base64:
+          type: string
+          description: Base64-encoded audio in the requested format.
+        alignment:
+          type: object
+          description: Word-level timing aligned with the synthesized audio.
+          properties:
+            words:
+              type: array
+              items:
+                type: string
+            word_start_times_milliseconds:
+              type: array
+              items:
+                type: number
+            word_end_times_milliseconds:
+              type: array
+              items:
+                type: number
     TextToSpeechRequest:
       type: object
       properties:
@@ -205,40 +239,6 @@ components:
       - transcript
       - voice
       - output_format
-    TimestampedSpeechResponse:
-      type: object
-      properties:
-        audio_base64:
-          type: string
-          description: Base64-encoded audio in the requested format.
-        alignment:
-          type: object
-          description: Word-level timing aligned with the synthesized audio.
-          properties:
-            words:
-              type: array
-              items:
-                type: string
-            word_start_times_milliseconds:
-              type: array
-              items:
-                type: number
-            word_end_times_milliseconds:
-              type: array
-              items:
-                type: number
-    Error:
-      type: object
-      properties:
-        detail:
-          type: object
-          properties:
-            error_code:
-              type: string
-            message:
-              type: string
-            extra:
-              type: object
   responses:
     Error:
       description: Error response.
