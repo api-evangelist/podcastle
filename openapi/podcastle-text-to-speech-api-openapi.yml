@@ -138,72 +138,6 @@ components:
       required:
       - mode
       - id
-    OutputFormat:
-      type: object
-      properties:
-        container:
-          type: string
-          description: Audio container format.
-          enum:
-          - raw
-          - mp3
-          - wav
-        encoding:
-          type: string
-          description: PCM encoding (used with the raw container).
-          enum:
-          - pcm_f32le
-          - pcm_s16le
-          - pcm_mulaw
-          default: pcm_s16le
-        sample_rate:
-          type: integer
-          description: Sample rate in Hz.
-          minimum: 8000
-          maximum: 48000
-        bit_rate:
-          type: integer
-          description: Bit rate in bits per second (MP3 only).
-          minimum: 32000
-          maximum: 320000
-          default: 192000
-      required:
-      - container
-      - sample_rate
-    Error:
-      type: object
-      properties:
-        detail:
-          type: object
-          properties:
-            error_code:
-              type: string
-            message:
-              type: string
-            extra:
-              type: object
-    TimestampedSpeechResponse:
-      type: object
-      properties:
-        audio_base64:
-          type: string
-          description: Base64-encoded audio in the requested format.
-        alignment:
-          type: object
-          description: Word-level timing aligned with the synthesized audio.
-          properties:
-            words:
-              type: array
-              items:
-                type: string
-            word_start_times_milliseconds:
-              type: array
-              items:
-                type: number
-            word_end_times_milliseconds:
-              type: array
-              items:
-                type: number
     TextToSpeechRequest:
       type: object
       properties:
@@ -239,6 +173,72 @@ components:
       - transcript
       - voice
       - output_format
+    Error:
+      type: object
+      properties:
+        detail:
+          type: object
+          properties:
+            error_code:
+              type: string
+            message:
+              type: string
+            extra:
+              type: object
+    TimestampedSpeechResponse:
+      type: object
+      properties:
+        audio_base64:
+          type: string
+          description: Base64-encoded audio in the requested format.
+        alignment:
+          type: object
+          description: Word-level timing aligned with the synthesized audio.
+          properties:
+            words:
+              type: array
+              items:
+                type: string
+            word_start_times_milliseconds:
+              type: array
+              items:
+                type: number
+            word_end_times_milliseconds:
+              type: array
+              items:
+                type: number
+    OutputFormat:
+      type: object
+      properties:
+        container:
+          type: string
+          description: Audio container format.
+          enum:
+          - raw
+          - mp3
+          - wav
+        encoding:
+          type: string
+          description: PCM encoding (used with the raw container).
+          enum:
+          - pcm_f32le
+          - pcm_s16le
+          - pcm_mulaw
+          default: pcm_s16le
+        sample_rate:
+          type: integer
+          description: Sample rate in Hz.
+          minimum: 8000
+          maximum: 48000
+        bit_rate:
+          type: integer
+          description: Bit rate in bits per second (MP3 only).
+          minimum: 32000
+          maximum: 320000
+          default: 192000
+      required:
+      - container
+      - sample_rate
   responses:
     Error:
       description: Error response.
