@@ -78,50 +78,6 @@ paths:
           $ref: '#/components/responses/Error'
 components:
   schemas:
-    ListVoicesResponse:
-      type: object
-      properties:
-        voices:
-          type: array
-          items:
-            $ref: '#/components/schemas/VoiceSummary'
-        next_cursor:
-          type: string
-          description: Cursor for fetching the next page.
-    CloneVoiceRequest:
-      type: object
-      properties:
-        audio:
-          type: string
-          format: binary
-          description: 'Audio clip file. Supported formats: wav, mp3, flac, aiff.'
-        name:
-          type: string
-          description: Voice name or label.
-        description:
-          type: string
-          description: Voice description.
-        accent:
-          type: string
-          description: Accent specification.
-        gender:
-          type: string
-          description: Voice gender.
-          enum:
-          - Male
-          - Female
-          - Neutral
-          - Unspecified
-        style:
-          type: string
-          description: Voice style(s), comma-separated.
-        enhance:
-          type: boolean
-          description: Apply noise reduction to the sample.
-          default: false
-      required:
-      - audio
-      - name
     VoiceSummary:
       type: object
       properties:
@@ -160,6 +116,16 @@ components:
               type: string
             extra:
               type: object
+    ListVoicesResponse:
+      type: object
+      properties:
+        voices:
+          type: array
+          items:
+            $ref: '#/components/schemas/VoiceSummary'
+        next_cursor:
+          type: string
+          description: Cursor for fetching the next page.
     CloneVoiceResponse:
       type: object
       properties:
@@ -172,6 +138,40 @@ components:
         language:
           type: string
           description: ISO 639-1 codes, comma-separated.
+    CloneVoiceRequest:
+      type: object
+      properties:
+        audio:
+          type: string
+          format: binary
+          description: 'Audio clip file. Supported formats: wav, mp3, flac, aiff.'
+        name:
+          type: string
+          description: Voice name or label.
+        description:
+          type: string
+          description: Voice description.
+        accent:
+          type: string
+          description: Accent specification.
+        gender:
+          type: string
+          description: Voice gender.
+          enum:
+          - Male
+          - Female
+          - Neutral
+          - Unspecified
+        style:
+          type: string
+          description: Voice style(s), comma-separated.
+        enhance:
+          type: boolean
+          description: Apply noise reduction to the sample.
+          default: false
+      required:
+      - audio
+      - name
     ListVoicesRequest:
       type: object
       properties:
