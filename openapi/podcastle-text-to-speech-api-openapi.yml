@@ -124,6 +124,20 @@ paths:
           $ref: '#/components/responses/Error'
 components:
   schemas:
+    Voice:
+      type: object
+      properties:
+        mode:
+          type: string
+          description: Voice selection mode.
+          enum:
+          - id
+        id:
+          type: string
+          description: Voice identifier from the voice library.
+      required:
+      - mode
+      - id
     OutputFormat:
       type: object
       properties:
@@ -168,20 +182,28 @@ components:
               type: string
             extra:
               type: object
-    Voice:
+    TimestampedSpeechResponse:
       type: object
       properties:
-        mode:
+        audio_base64:
           type: string
-          description: Voice selection mode.
-          enum:
-          - id
-        id:
-          type: string
-          description: Voice identifier from the voice library.
-      required:
-      - mode
-      - id
+          description: Base64-encoded audio in the requested format.
+        alignment:
+          type: object
+          description: Word-level timing aligned with the synthesized audio.
+          properties:
+            words:
+              type: array
+              items:
+                type: string
+            word_start_times_milliseconds:
+              type: array
+              items:
+                type: number
+            word_end_times_milliseconds:
+              type: array
+              items:
+                type: number
     TextToSpeechRequest:
       type: object
       properties:
@@ -217,35 +239,6 @@ components:
       - transcript
       - voice
       - output_format
-    TimestampedSpeechResponse:
-      type: object
-      properties:
-        audio_base64:
-          type: string
-          description: Base64-encoded audio in the requested format.
-        alignment:
-          type: object
-          description: Word-level timing aligned with the synthesized audio.
-          properties:
-            words:
-              type: array
-              items:
-                type: string
-            word_start_times_milliseconds:
-              type: array
-              items:
-                type: number
-            word_end_times_milliseconds:
-              type: array
-              items:
-                type: number
-  responses:
-    Error:
-      description: Error response.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   parameters:
     Version:
       name: version
@@ -255,6 +248,13 @@ components:
       schema:
         type: string
         example: v1
+  responses:
+    Error:
+      description: Error response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     apiKey:
       type: apiKey

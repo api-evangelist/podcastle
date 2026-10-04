@@ -78,100 +78,6 @@ paths:
           $ref: '#/components/responses/Error'
 components:
   schemas:
-    VoiceSummary:
-      type: object
-      properties:
-        voice_id:
-          type: string
-        voice_type:
-          type: string
-          enum:
-          - PREDEFINED
-          - CUSTOM
-        name:
-          type: string
-        description:
-          type: string
-        language:
-          type: string
-        gender:
-          type: string
-        accent:
-          type: string
-        style:
-          type: string
-        created_at:
-          type: string
-        updated_at:
-          type: string
-    Error:
-      type: object
-      properties:
-        detail:
-          type: object
-          properties:
-            error_code:
-              type: string
-            message:
-              type: string
-            extra:
-              type: object
-    ListVoicesResponse:
-      type: object
-      properties:
-        voices:
-          type: array
-          items:
-            $ref: '#/components/schemas/VoiceSummary'
-        next_cursor:
-          type: string
-          description: Cursor for fetching the next page.
-    CloneVoiceResponse:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        language:
-          type: string
-          description: ISO 639-1 codes, comma-separated.
-    CloneVoiceRequest:
-      type: object
-      properties:
-        audio:
-          type: string
-          format: binary
-          description: 'Audio clip file. Supported formats: wav, mp3, flac, aiff.'
-        name:
-          type: string
-          description: Voice name or label.
-        description:
-          type: string
-          description: Voice description.
-        accent:
-          type: string
-          description: Accent specification.
-        gender:
-          type: string
-          description: Voice gender.
-          enum:
-          - Male
-          - Female
-          - Neutral
-          - Unspecified
-        style:
-          type: string
-          description: Voice style(s), comma-separated.
-        enhance:
-          type: boolean
-          description: Apply noise reduction to the sample.
-          default: false
-      required:
-      - audio
-      - name
     ListVoicesRequest:
       type: object
       properties:
@@ -207,13 +113,100 @@ components:
         after:
           type: string
           description: Pagination cursor for subsequent pages.
-  responses:
     Error:
-      description: Error response.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+      type: object
+      properties:
+        detail:
+          type: object
+          properties:
+            error_code:
+              type: string
+            message:
+              type: string
+            extra:
+              type: object
+    CloneVoiceRequest:
+      type: object
+      properties:
+        audio:
+          type: string
+          format: binary
+          description: 'Audio clip file. Supported formats: wav, mp3, flac, aiff.'
+        name:
+          type: string
+          description: Voice name or label.
+        description:
+          type: string
+          description: Voice description.
+        accent:
+          type: string
+          description: Accent specification.
+        gender:
+          type: string
+          description: Voice gender.
+          enum:
+          - Male
+          - Female
+          - Neutral
+          - Unspecified
+        style:
+          type: string
+          description: Voice style(s), comma-separated.
+        enhance:
+          type: boolean
+          description: Apply noise reduction to the sample.
+          default: false
+      required:
+      - audio
+      - name
+    ListVoicesResponse:
+      type: object
+      properties:
+        voices:
+          type: array
+          items:
+            $ref: '#/components/schemas/VoiceSummary'
+        next_cursor:
+          type: string
+          description: Cursor for fetching the next page.
+    CloneVoiceResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        language:
+          type: string
+          description: ISO 639-1 codes, comma-separated.
+    VoiceSummary:
+      type: object
+      properties:
+        voice_id:
+          type: string
+        voice_type:
+          type: string
+          enum:
+          - PREDEFINED
+          - CUSTOM
+        name:
+          type: string
+        description:
+          type: string
+        language:
+          type: string
+        gender:
+          type: string
+        accent:
+          type: string
+        style:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
   parameters:
     Version:
       name: version
@@ -223,6 +216,13 @@ components:
       schema:
         type: string
         example: v1
+  responses:
+    Error:
+      description: Error response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     apiKey:
       type: apiKey
